@@ -4,13 +4,6 @@ class Board
 
   def initialize
     (1..7).each { |num| instance_variable_set("@col#{num}", Array.new(6, '-')) }
-    # @col1 = Array.new(6, '-')
-    # @col2 = Array.new(6, '-')
-    # @col3 = Array.new(6, '-')
-    # @col4 = Array.new(6, '-')
-    # @col5 = Array.new(6, '-')
-    # @col6 = Array.new(6, '-')
-    # @col7 = Array.new(6, '-')
   end
 
   def add_to_board(column, disc)
@@ -24,7 +17,7 @@ class Board
   end
 
   def return_board
-    @col1.class
+    instance_variables
   end
 
   def display_board
