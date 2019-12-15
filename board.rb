@@ -20,8 +20,7 @@ class Board
     instance_variables
   end
 
-  def display_board
-    puts col1 
+  def display_board  
   end
 
 end
