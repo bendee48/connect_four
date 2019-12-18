@@ -1,4 +1,6 @@
 require './board.rb'
+require './player.rb'
+require './game.rb'
 
 describe "Board" do
   let(:board) { Board.new }
@@ -14,5 +16,17 @@ describe "Board" do
     end
   end
 
-  
+  describe "Player" do
+    describe "#initialize" do
+      it "assigns a player with a name" do
+        player = Player.new("David")
+        expect(player.name).to eq "David"
+      end
+    end
+  end
+
+  describe "Game" do
+    
+  end
+
 end
