@@ -26,7 +26,6 @@ describe "Board" do
   end
 
   describe "Game" do
-    
-  end
+  end  
 
 end
