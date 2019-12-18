@@ -13,4 +13,6 @@ describe "Board" do
       expect(board.add_to_board(board.col1, "Y")).to eql ["R", "Y", "-", "-", "-", "-"]      
     end
   end
+
+  
 end

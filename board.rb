@@ -17,10 +17,11 @@ class Board
   end
 
   def return_board
-    instance_variables
+    [col1, col2, col3, col4, col5, col6, col7]
   end
 
   def display_board  
+    return_board.transpose.reverse_each { |row| puts "%s %s %s %s %s %s %s" % row }
   end
 
 end
