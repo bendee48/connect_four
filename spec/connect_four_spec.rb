@@ -26,6 +26,31 @@ describe "Board" do
   end
 
   describe "Game" do
+    let(:game) { Game.new }
+
+    # before do
+    #   allow($stdout).to receive(:write)
+    # end
+
+    describe "#player_setup" do
+      it "set's up player 1's name as 'Ben'" do
+        allow(game).to receive(:gets).and_return("Ben")
+        game.setup_player
+        expect(game.player1.name).to eql "Ben"
+      end
+
+      it "sets up player 2's name as 'Emma'" do
+        allow(game).to receive(:gets).and_return("Ben", "Emma")
+        game.setup_player
+        expect(game.player2.name).to eql "Emma"
+      end
+
+      it "sets player 1's disc color to red" do
+        allow(game).to receive(:gets).and_return("name", "name", "Red")
+        game.setup_player
+        expect(game.player1.disc).to eql "R"
+      end
+    end
   end  
 
 end

@@ -9,17 +9,17 @@ class Game
   end
 
   def start
-    setup_players
+    setup_player
     main_game
   end
 
   def setup_player
     puts "Player 1 please enter your name:"
     ans = gets.chomp
-    player1 = Player.new(ans)
+    self.player1 = Player.new(ans)
     puts "Player 2 please enter your name."
     ans = gets.chomp
-    player2 = Player.new(ans)
+    self.player2 = Player.new(ans)
     puts "#{player1.name} please choose your colour. Red or Yellow?"
     ans = gets.chomp
     player1.disc = ans == "Red" ? "R" : "Y"
