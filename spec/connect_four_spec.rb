@@ -35,19 +35,19 @@ describe "Board" do
     describe "#player_setup" do
       it "set's up player 1's name as 'Ben'" do
         allow(game).to receive(:gets).and_return("Ben")
-        game.setup_player
+        game.setup_players
         expect(game.player1.name).to eql "Ben"
       end
 
       it "sets up player 2's name as 'Emma'" do
         allow(game).to receive(:gets).and_return("Ben", "Emma")
-        game.setup_player
+        game.setup_players
         expect(game.player2.name).to eql "Emma"
       end
 
       it "sets player 1's disc color to red" do
-        allow(game).to receive(:gets).and_return("name", "name", "Red")
-        game.setup_player
+        allow(game).to receive(:gets).and_return("name", "red")
+        game.setup_players
         expect(game.player1.disc).to eql "R"
       end
     end
