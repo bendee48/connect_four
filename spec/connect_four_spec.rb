@@ -29,7 +29,7 @@ end
 
 describe "Game" do
   let(:game) { Game.new }
-
+  let(:board) { Board.new }
   # before do
   #   allow($stdout).to receive(:write)
   # end
@@ -58,6 +58,25 @@ describe "Game" do
       game.setup_players
       expect(game.player1.disc).to eql "R"
     end
-
   end
+
+  describe "#check_win" do
+    it "wins with 4 in a vertical row" do
+      4.times { board.add_to_board(board.col1, "Y") }
+      expect(game.check_win).to be_truthy
+    end
+
+    it "wins with 4 in a horizontal row" do
+      board.add_to_board(board.col1, "R")
+      board.add_to_board(board.col2, "R")
+      board.add_to_board(board.col3, "R")
+      board.add_to_board(board.col4, "R")
+      expect(game.check_win).to be_truthy
+    end
+
+    it "wins with 4 in a diagonal row" do
+    end
+  end
+
+
 end  

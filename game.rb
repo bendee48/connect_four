@@ -93,4 +93,16 @@ class Game
     board.add_to_board(moves[column], player.disc)
   end
 
+  def check_win
+  end
+
+  def check_horizontal
+  end
+
+  def check_vertical
+  end
+
+  def check_diagonal
+  end
+
 end
