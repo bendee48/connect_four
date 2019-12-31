@@ -32,6 +32,12 @@ describe "Board" do
     #   allow($stdout).to receive(:write)
     # end
 
+    describe "Game" do
+      it "initializes a board" do
+        expect(game.board).to be_a Board
+      end
+    end
+
     describe "#player_setup" do
       it "set's up player 1's name as 'Ben'" do
         allow(game).to receive(:gets).and_return("Ben", "Emma", "red")

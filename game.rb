@@ -1,11 +1,13 @@
 require './player'
+require './board'
 
 class Game
-  attr_accessor :player1, :player2
+  attr_accessor :player1, :player2, :board
 
   def initialize
-    player1 = nil
-    player2 = nil
+    @player1 = nil
+    @player2 = nil
+    @board = Board.new
   end
 
   def start
@@ -18,30 +20,6 @@ class Game
       set_name
     end    
     set_color
-
-    
-
-    # puts "Player 1 please enter your name:"
-    # ans = gets.chomp.capitalize
-    # self.player1 = Player.new(ans)
-    # loop do
-    #   puts "Thanks #{player1.name}. Please choose your colour. Type Red or Yellow?"
-    #   ans = gets.chomp.downcase
-    #   if ans == "red" || ans[0] == "r"
-    #     self.player1.disc = "R"
-    #     break
-    #   elsif ans == "yellow" || ans[0] = "y"
-    #     self.player1.disc = "Y"
-    #     break
-    #   else
-    #     puts "I don't recognise that colour. Please type 'Red' or 'Yellow'."
-    #   end
-    # end
-    # puts "Player 2 please enter your name."
-    # ans = gets.chomp.capitalize
-    # self.player2 = Player.new(ans) 
-    # self.player2.disc = player1.disc == "R" ? "Y" : "R"  
-    # puts "Thanks #{player2.name} you're"
   end
 
   def set_name
@@ -85,9 +63,22 @@ class Game
   end
 
   def main_game
+    players = [player1, player2].cycle
+    loop do
+      board.display_board     
+      player = players.next
+      puts "#{player.name} choose a column."
+      ans = gets.chomp
+      board.add_to_board(moves[ans], player.disc)
+    end
+  end
+
+  def moves
+    {"one" => board.col1 }
   end
 
   def make_move(column, player)
+
   end
 
 end
