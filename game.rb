@@ -68,7 +68,7 @@ class Game
       board.display_board     
       player = players.next
       ans = column_selection(player)
-      board.add_to_board(moves[ans], player.disc)
+      make_move(ans, player)
     end
   end
 
@@ -90,7 +90,7 @@ class Game
   end
 
   def make_move(column, player)
-
+    board.add_to_board(moves[column], player.disc)
   end
 
 end
