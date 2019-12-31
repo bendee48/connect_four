@@ -67,14 +67,26 @@ class Game
     loop do
       board.display_board     
       player = players.next
-      puts "#{player.name} choose a column."
-      ans = gets.chomp
+      ans = column_selection(player)
       board.add_to_board(moves[ans], player.disc)
     end
   end
 
   def moves
-    {"one" => board.col1 }
+    { "1" => board.col1, "2" => board.col2, "3" => board.col3, "4" => board.col4,
+     "5" => board.col5, "6" => board.col6, "7" => board.col7 }
+  end
+
+  def column_selection(player)
+    loop do
+      puts "#{player.name} choose a column."
+      ans = gets.chomp
+      if ("1".."7") === ans
+        return ans
+      else
+        puts "I don't recognise that command. Please enter 1 - 7."
+      end
+    end
   end
 
   def make_move(column, player)
