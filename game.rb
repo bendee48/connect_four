@@ -94,12 +94,16 @@ class Game
   end
 
   def check_win
+    check_vertical
+    check_horizontal
   end
 
   def check_horizontal
+    board.return_board.transpose.each_cons(4).any? { |col| col.uniq.size == 1 }
   end
 
   def check_vertical
+    board.return_board.each_cons(4).any? { |col| col.uniq.size == 1 }
   end
 
   def check_diagonal

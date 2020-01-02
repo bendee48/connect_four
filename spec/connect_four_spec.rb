@@ -75,6 +75,14 @@ describe "Game" do
     end
 
     it "wins with 4 in a diagonal row" do
+      board.add_to_board(board.col1, "Y")
+      board.add_to_board(board.col2, "R")
+      board.add_to_board(board.col2, "Y")
+      2.times { board.add_to_board(board.col3, "R") }
+      board.add_to_board(board.col3, "Y")
+      3.times { board.add_to_board(board.col4, "R") }
+      board.add_to_board(board.col4, "Y")
+      expect(game.check_win).to be_truthy
     end
   end
 
