@@ -94,8 +94,9 @@ class Game
   end
 
   def check_win
-    check_vertical
-    check_horizontal
+    check_vertical ||
+    check_horizontal ||
+    check_diagonal
   end
 
   def check_horizontal
@@ -107,6 +108,7 @@ class Game
   end
 
   def check_diagonal
+
   end
 
 end

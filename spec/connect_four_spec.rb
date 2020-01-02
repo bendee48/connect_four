@@ -82,6 +82,7 @@ describe "Game" do
       board.add_to_board(board.col3, "Y")
       3.times { board.add_to_board(board.col4, "R") }
       board.add_to_board(board.col4, "Y")
+      p board.display_board
       expect(game.check_win).to be_truthy
     end
   end
