@@ -29,7 +29,9 @@ end
 
 describe "Game" do
   let(:game) { Game.new }
-  let(:board) { Board.new }
+  let(:player1) { game.player1 = Player.new("Sarah") }
+  let(:player2) { game.player2 = Player.new("Dave") }
+
   # before do
   #   allow($stdout).to receive(:write)
   # end
@@ -60,32 +62,32 @@ describe "Game" do
     end
   end
 
-  describe "#check_win" do
+  describe "#check_vertical" do
     it "wins with 4 in a vertical row" do
-      4.times { board.add_to_board(board.col1, "Y") }
-      expect(game.check_win).to be_truthy
+      player1.disc = "Y"
+      4.times { game.make_move("1", player1) }
+      expect(game.check_vertical("Y")).to be_truthy  
     end
-
-    it "wins with 4 in a horizontal row" do
-      board.add_to_board(board.col1, "R")
-      board.add_to_board(board.col2, "R")
-      board.add_to_board(board.col3, "R")
-      board.add_to_board(board.col4, "R")
-      expect(game.check_win).to be_truthy
-    end
-
-    it "wins with 4 in a diagonal row" do
-      board.add_to_board(board.col1, "Y")
-      board.add_to_board(board.col2, "R")
-      board.add_to_board(board.col2, "Y")
-      2.times { board.add_to_board(board.col3, "R") }
-      board.add_to_board(board.col3, "Y")
-      3.times { board.add_to_board(board.col4, "R") }
-      board.add_to_board(board.col4, "Y")
-      p board.display_board
-      expect(game.check_win).to be_truthy
+  
+    it "doesn't win when there isn't 4 in a vertical row" do
+      player1.disc = "Y"
+      player2.disc = "R"
+      game.make_move("1", player1)
+      3.times { game.make_move("1", player2) }
+      expect(game.check_vertical("R")). to be_falsey
     end
   end
 
+  describe "#check_horizontal" do
+    it "wins with 4 in a horizontal row" do
+    
+    end
+  end
+
+  describe "#check_diagonal" do
+    it "wins with 4 in a diagonal row" do
+     
+    end
+  end
 
 end  

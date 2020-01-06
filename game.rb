@@ -93,22 +93,26 @@ class Game
     board.add_to_board(moves[column], player.disc)
   end
 
-  def check_win
-    check_vertical ||
-    check_horizontal ||
-    check_diagonal
+  def check_win(disc)
+    check_vertical(disc)
   end
 
-  def check_horizontal
-    board.return_board.transpose.each_cons(4).any? { |col| col.uniq.size == 1 }
+  def check_horizontal(disc)
+    # board.return_board.transpose.each_cons(4).any? do |col| 
+      
+    # end
   end
 
-  def check_vertical
-    board.return_board.each_cons(4).any? { |col| col.uniq.size == 1 }
+  def check_vertical(disc)
+    board.return_board.any? do |col|
+      col.each_cons(4).any? do |row|
+        row.all? { |tile| tile == disc }
+      end
+    end
   end
 
-  def check_diagonal
-
+  def check_diagonal(disc)
+   
   end
 
 end
