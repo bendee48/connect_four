@@ -66,7 +66,7 @@ describe "Game" do
     it "wins with 4 in a vertical row" do
       player1.disc = "Y"
       4.times { game.make_move("1", player1) }
-      expect(game.check_vertical("Y")).to be_truthy  
+      expect(game.check_vertical(player1.disc)).to eql true 
     end
   
     it "doesn't win when there isn't 4 in a vertical row" do
@@ -74,13 +74,35 @@ describe "Game" do
       player2.disc = "R"
       game.make_move("1", player1)
       3.times { game.make_move("1", player2) }
-      expect(game.check_vertical("R")). to be_falsey
+      expect(game.check_vertical(player2.disc)). to eql false
+    end
+
+    it "triggers #check_win method" do
+      player1.disc = "Y"
+      4.times { game.make_move("1", player1) }
+      expect(game.check_win(player1.disc)).to eql true
     end
   end
 
   describe "#check_horizontal" do
     it "wins with 4 in a horizontal row" do
-    
+      player1.disc = "R"
+      ("1".."4").each { |num| game.make_move(num, player1)}
+      expect(game.check_horizontal(player1.disc)).to eql true
+    end
+
+    it "doesn't win when there isn't 4 in a horizontal row" do
+      player1.disc = "R"
+      player2.disc = "Y"
+      ("1".."3").each { |num| game.make_move(num, player1)}
+      game.make_move("4", player2)
+      expect(game.check_horizontal(player1.disc)).to eql false
+    end
+
+    it "triggers the #check_win method" do
+      player1.disc = "R"
+      ("1".."4").each { |num| game.make_move(num, player1)}
+      expect(game.check_win(player1.disc)).to eql true
     end
   end
 
