@@ -69,6 +69,7 @@ class Game
       player = players.next
       ans = column_selection(player)
       make_move(ans, player)
+      (winner; break) if check_win(player.disc) 
     end
   end
 
@@ -94,13 +95,16 @@ class Game
   end
 
   def check_win(disc)
-    check_vertical(disc)
+    check_vertical(disc) ||
+    check_horizontal(disc)
   end
 
   def check_horizontal(disc)
-    # board.return_board.transpose.each_cons(4).any? do |col| 
-      
-    # end
+    board.return_board.transpose.any? do |col|
+      col.each_cons(4).any? do |row|
+        row.all? { |tile| tile == disc } 
+      end
+    end
   end
 
   def check_vertical(disc)
@@ -113,6 +117,11 @@ class Game
 
   def check_diagonal(disc)
    
+  end
+
+  def winner
+    puts "You win."
+    board.display_board
   end
 
 end
