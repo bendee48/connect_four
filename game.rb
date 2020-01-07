@@ -116,11 +116,16 @@ class Game
   end
 
   def check_diagonal(disc)
-   
+    diagonal_rows = []
+    (0...board.return_board.size).each do |num|
+      row = board.return_board.each.with_index(num).map { |col, ind| col[ind] }
+      diagonal_rows << row.compact
+    end
+    diagonal_rows
   end
 
   def winner
-    puts "You win."
+    puts "You win." 
     board.display_board
   end
 

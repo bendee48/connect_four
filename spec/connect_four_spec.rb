@@ -108,8 +108,46 @@ describe "Game" do
 
   describe "#check_diagonal" do
     it "wins with 4 in a diagonal row" do
-     
+      player1.disc = "Y"
+      player2.disc = "R"
+      game.make_move("1", player1)
+      game.make_move("2", player2)
+      game.make_move("2", player1)
+      2.times { game.make_move("3", player2) }
+      game.make_move("3", player1)
+      3.times { game.make_move("4", player2) }
+      game.make_move("4", player1)
+      game.check_diagonal(player1.disc)
+      game.board.display_board
+      expect(game.check_diagonal(player1.disc)).to eql true
     end
+
+    it "doesn't win when there isn't 4 in a diagonal row" do
+      player1.disc = "Y"
+      player2.disc = "R"
+      game.make_move("1", player1)
+      game.make_move("2", player1)
+      game.make_move("2", player2)
+      2.times { game.make_move("3", player2) }
+      game.make_move("3", player1)
+      3.times { game.make_move("4", player2) }
+      game.make_move("4", player1)
+      expect(game.check_diagonal(player1.disc)).to eql false
+    end
+
+    it "triggers the #check_win mathod" do
+      player1.disc = "Y"
+      player2.disc = "R"
+      game.make_move("1", player1)
+      game.make_move("2", player2)
+      game.make_move("2", player1)
+      2.times { game.make_move("3", player2) }
+      game.make_move("3", player1)
+      3.times { game.make_move("4", player2) }
+      game.make_move("4", player1)
+      expect(game.check_win(player1.disc)).to eql true
+    end
+
   end
 
 end  
