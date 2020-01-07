@@ -96,7 +96,8 @@ class Game
 
   def check_win(disc)
     check_vertical(disc) ||
-    check_horizontal(disc)
+    check_horizontal(disc) ||
+    check_diagonal(disc)
   end
 
   def check_horizontal(disc)
@@ -121,7 +122,16 @@ class Game
       row = board.return_board.each.with_index(num).map { |col, ind| col[ind] }
       diagonal_rows << row.compact
     end
-    diagonal_rows
+
+    (1...board.return_board.size).each do |num|
+      diagonal_rows << board.return_board[num..-1].each.with_index.map { |col, ind| col[ind] }
+    end
+
+    diagonal_rows.any? do |row|
+      row.each_cons(4).any? do |sec|
+        sec.all? { |tile| tile == disc }
+      end
+    end
   end
 
   def winner
