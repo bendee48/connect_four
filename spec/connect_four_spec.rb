@@ -140,7 +140,6 @@ describe "Game" do
       2.times { game.make_move("2", player2) }
       game.make_move("3", player2)
       ("1".."4").each { |num| game.make_move(num, player1) }
-      game.board.display_board
       expect(game.check_diagonal(player1.disc)).to eql true
     end
 

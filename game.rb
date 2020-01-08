@@ -116,18 +116,27 @@ class Game
     end
   end
 
-  def check_diagonal(disc)
-    #top half of board
+  def check_diagonal(disc)    
     diagonal_rows = []
-    
+    #top half of board
     (0...board.return_board.size).each do |num|
       row = board.return_board.each.with_index(num).map { |col, ind| col[ind] }
+      diagonal_rows << row.compact
+    end
+    #reverse top half
+    (0...board.return_board.size).each do |num|
+      row = board.return_board.reverse.each.with_index(num).map { |col, ind| col[ind] }
       diagonal_rows << row.compact
     end
     #bottom half of board
     (1...board.return_board.size).each do |num|
       diagonal_rows << board.return_board[num..-1].each.with_index.map { |col, ind| col[ind] }
     end
+    #reverse bottom half
+    (1...board.return_board.size).each do |num|
+      diagonal_rows << board.return_board.reverse[num..-1].each.with_index.map { |col, ind| col[ind] }
+    end
+    
 
     diagonal_rows.any? do |row|
       row.each_cons(4).any? do |sec|
