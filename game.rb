@@ -12,7 +12,15 @@ class Game
 
   def start
     setup_players
+    instructions
     main_game
+  end
+
+  def instructions
+    sleep 2;
+    puts "\nTry to get 4 in a row."; sleep 1
+    puts "Enter a number 1 - 7 to choose a column."; sleep 1
+    puts "Good luck."; sleep 1
   end
 
   def setup_players 
@@ -69,7 +77,7 @@ class Game
       player = players.next
       ans = column_selection(player)
       make_move(ans, player)
-      (winner; break) if check_win(player.disc) 
+      (winner(player); break) if check_win(player.disc) 
     end
   end
 
@@ -135,8 +143,7 @@ class Game
     #reverse bottom half
     (1...board.return_board.size).each do |num|
       diagonal_rows << board.return_board.reverse[num..-1].each.with_index.map { |col, ind| col[ind] }
-    end
-    
+    end 
 
     diagonal_rows.any? do |row|
       row.each_cons(4).any? do |sec|
@@ -145,8 +152,8 @@ class Game
     end
   end
 
-  def winner
-    puts "You win." 
+  def winner(player)
+    puts "\nCongratulations. #{player.name} wins!" 
     board.display_board
   end
 

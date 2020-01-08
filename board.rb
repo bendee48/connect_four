@@ -21,7 +21,9 @@ class Board
   end
 
   def display_board  
-    return_board.transpose.reverse_each { |row| puts "%s %s %s %s %s %s %s" % row }
+    puts
+    return_board.transpose.reverse_each { |row| puts " %s %s %s %s %s %s %s" % row }
+    puts
     nil
   end
 

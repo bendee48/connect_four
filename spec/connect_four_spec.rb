@@ -32,9 +32,9 @@ describe "Game" do
   let(:player1) { game.player1 = Player.new("Sarah") }
   let(:player2) { game.player2 = Player.new("Dave") }
 
-  # before do
-  #   allow($stdout).to receive(:write)
-  # end
+  before do
+    allow($stdout).to receive(:write)
+  end
 
   describe "Game" do
     it "initializes a board" do
