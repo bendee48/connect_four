@@ -117,8 +117,6 @@ describe "Game" do
       game.make_move("3", player1)
       3.times { game.make_move("4", player2) }
       game.make_move("4", player1)
-      game.check_diagonal(player1.disc)
-      game.board.display_board
       expect(game.check_diagonal(player1.disc)).to eql true
     end
 
@@ -133,6 +131,17 @@ describe "Game" do
       3.times { game.make_move("4", player2) }
       game.make_move("4", player1)
       expect(game.check_diagonal(player1.disc)).to eql false
+    end
+
+    it "wins with a diagonal going right to left" do
+      player1.disc = "Y"
+      player2.disc = "R"
+      3.times { game.make_move("1", player2) }
+      2.times { game.make_move("2", player2) }
+      game.make_move("3", player2)
+      ("1".."4").each { |num| game.make_move(num, player1) }
+      game.board.display_board
+      expect(game.check_diagonal(player1.disc)).to eql true
     end
 
     it "triggers the #check_win mathod" do
